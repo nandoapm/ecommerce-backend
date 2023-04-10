@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 //import { CityEntity } from '../../city/entities/city.entity';
 //import { UserEntity } from '../../user/entities/user.entity';
 import {
@@ -24,10 +25,10 @@ export class AddressEntity {
   complement: string;
 
   @Column({ name: 'number', nullable: false })
-  numberAddress: number;
+  number: string;
 
-  @Column({ name: 'cep', nullable: false })
-  cep: string;
+  @Column({ name: 'zipcode', nullable: false })
+  zipcode: string;
 
   @Column({ name: 'city_id', nullable: false })
   cityId: number;

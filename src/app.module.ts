@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateTableUser1680741696194 } from './migration/1680741696194-create_table_user';
 import { CreateTableState1680802605910 } from './migration/1680802605910-create_table_state';
 import { CreateTableCity1680802620318 } from './migration/1680802620318-create_table_city';
-import { CreateTableAddress1680802634093 } from './migration/1680802634093-create_table_address';
+import { CreateTableAddress1681157746795 } from './migration/1681157746795-create_table_address';
 import { AlterTableState1680807720722 } from './migration/1680807720722-alter-table-state';
 import { InsertInState1680807739899 } from './migration/1680807739899-insert-in-state';
 import { InsertInCity1680807748223 } from './migration/1680807748223-insert-in-city';
@@ -17,6 +17,7 @@ import { AddressModule } from './address/address.module';
 import { StateEntity } from './state/entities/state.entity';
 import { CityEntity } from './city/entities/city.entity';
 import { CacheModule } from './cache/cache.module';
+import { AddressEntity } from './address/entities/address.entity';
 
 @Module({
   imports: [
@@ -30,12 +31,12 @@ import { CacheModule } from './cache/cache.module';
       password: process.env.DB_PASSWORD,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
-      entities: [UserEntity, StateEntity, CityEntity],
+      entities: [UserEntity, StateEntity, CityEntity, AddressEntity],
       migrations: [
         CreateTableUser1680741696194,
         CreateTableState1680802605910,
         CreateTableCity1680802620318,
-        CreateTableAddress1680802634093,
+        CreateTableAddress1681157746795,
         AlterTableState1680807720722,
         InsertInState1680807739899,
         InsertInCity1680807748223,
