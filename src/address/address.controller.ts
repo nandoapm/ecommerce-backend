@@ -7,19 +7,20 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-//import { Roles } from '../decorators/roles.decorator';
 //import { UserId } from '../decorators/user-id.decorator';
-//import { UserType } from '../user/enum/user-type.enum';
 import { AddressService } from './address.service';
 import { CreateAddressDto } from './dtos/createAddress.dto';
 //import { ReturnAddressDto } from './dtos/returnAddress.dto';
 import { AddressEntity } from './entities/address.entity';
+import { Roles } from 'src/decorators/roles.decorator';
+import { UserType } from 'src/user/enum/user-type.enum';
 
 //@Roles(UserType.User, UserType.Admin, UserType.Root)
 @Controller('address')
 export class AddressController {
   constructor(private readonly addressService: AddressService) {}
 
+  @Roles(UserType.Admin) //only user can be to create a new address
   @Post('/:userId')
   @UsePipes(ValidationPipe)
   async createAddress(

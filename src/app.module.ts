@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
@@ -19,6 +18,9 @@ import { CityEntity } from './city/entities/city.entity';
 import { CacheModule } from './cache/cache.module';
 import { AddressEntity } from './address/entities/address.entity';
 import { AuthModule } from './auth/auth.module';
+import { RolesGuard } from './guards/role.guard';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -50,8 +52,14 @@ import { AuthModule } from './auth/auth.module';
     AddressModule,
     CacheModule,
     AuthModule,
+    JwtModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}
