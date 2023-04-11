@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import { AddressEntity } from 'src/address/entities/address.entity';
 import {
   Entity,

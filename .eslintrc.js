@@ -21,5 +21,14 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'prettier/prettier': [
+      'error',
+      { endOfLine: 'auto' },
+      { usePrettierrc: true },
+    ], // Use our .prettierrc file as source
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    //'simple-import-sort/imports': 'error',
+    //'simple-import-sort/exports': 'error',
   },
 };

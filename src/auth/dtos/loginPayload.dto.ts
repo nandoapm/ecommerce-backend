@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { UserEntity } from '../../user/entities/user.entity';
 
 export class LoginPayload {

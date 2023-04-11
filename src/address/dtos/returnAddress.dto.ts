@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { ReturnCityDto } from '../../city/dtos/returnCity.dto';
 import { AddressEntity } from '../entities/address.entity';
 

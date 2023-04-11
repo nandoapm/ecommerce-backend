@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { CityEntity } from '../../city/entities/city.entity';
 import { UserEntity } from 'src/user/entities/user.entity';
 import {

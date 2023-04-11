@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { StateEntity } from '../entities/state.entity';
 
 export class ReturnStateDto {

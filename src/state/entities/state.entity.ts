@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import { CityEntity } from '../../city/entities/city.entity';
 import {
   Column,
