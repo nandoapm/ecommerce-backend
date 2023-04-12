@@ -8,7 +8,7 @@ export const authorizantionToLoginPayload = (
   if (authorizationSplited.length < 3 || !authorizationSplited[1]) {
     return undefined;
   }
-
+  //convert base64 of token
   return JSON.parse(
     Buffer.from(authorizationSplited[1], 'base64').toString('ascii'),
   );
