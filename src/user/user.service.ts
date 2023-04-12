@@ -25,7 +25,7 @@ export class UserService {
     );
 
     if (user) {
-      throw new BadGatewayException('email registered in system');
+      throw new BadGatewayException('email already registered in the system');
     }
 
     const saltOrRounds = 10;
