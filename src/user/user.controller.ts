@@ -49,15 +49,15 @@ export class UserController {
     );
   }
 
-  @Roles(UserType.Admin, UserType.Root, UserType.User)
-  @Patch()
-  @UsePipes(ValidationPipe)
-  async updatePasswordUser(
-    @Body() updatePasswordDTO: UpdatePasswordDTO,
-    @UserId() userId: number,
-  ): Promise<UserEntity> {
-    return this.userService.updatePasswordUser(updatePasswordDTO, userId);
-  }
+  // @Roles(UserType.Admin, UserType.Root, UserType.User)
+  // @Patch()
+  // @UsePipes(ValidationPipe)
+  // async updatePasswordUser(
+  //   @Body() updatePasswordDTO: UpdatePasswordDTO,
+  //   @UserId() userId: number,
+  // ): Promise<UserEntity> {
+  //   return this.userService.updatePasswordUser(updatePasswordDTO, userId);
+  // }
 
   @Roles(UserType.Admin, UserType.Root, UserType.User)
   @Get()
