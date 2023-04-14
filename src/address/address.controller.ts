@@ -12,8 +12,8 @@ import { AddressService } from './address.service';
 import { CreateAddressDto } from './dtos/createAddress.dto';
 //import { ReturnAddressDto } from './dtos/returnAddress.dto';
 import { AddressEntity } from './entities/address.entity';
-import { Roles } from 'src/decorators/roles.decorator';
-import { UserType } from 'src/user/enum/user-type.enum';
+import { Roles } from '../decorators/roles.decorator';
+import { UserType } from '../user/enum/user-type.enum';
 
 //This @Roles is using to validate user role
 @Roles(UserType.User) //UserType.Admin, UserType.Root
