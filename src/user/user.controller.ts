@@ -2,19 +2,30 @@ import {
   Body,
   Controller,
   Get,
-  Post,
   Param,
+  Patch,
+  Post,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { Roles } from '../decorators/roles.decorator';
+import { UserId } from '../decorators/user-id.decorator';
 import { CreateUserDto } from './dtos/createUser.dto';
-import { UserService } from './user.service';
-import { UserEntity } from './entities/user.entity';
 import { ReturnUserDto } from './dtos/returnUser.dto';
+import { UpdatePasswordDTO } from './dtos/updatePassword.dto';
+import { UserEntity } from './entities/user.entity';
+import { UserType } from './enum/user-type.enum';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Roles(UserType.Root)
+  @Post('/admin')
+  async createAdmin(@Body() createUser: CreateUserDto): Promise<UserEntity> {
+    return this.userService.createUser(createUser, UserType.Admin);
+  }
 
   @UsePipes(ValidationPipe)
   @Post()
@@ -22,17 +33,35 @@ export class UserController {
     return this.userService.createUser(createUser);
   }
 
-  @Get()
+  @Roles(UserType.Admin, UserType.Root)
+  @Get('/all')
   async getAllUser(): Promise<ReturnUserDto[]> {
-    //ReturnUserDto[]> {
     return (await this.userService.getAllUser()).map(
-      (UserEntity) => new ReturnUserDto(UserEntity),
+      (userEntity) => new ReturnUserDto(userEntity),
     );
   }
 
-  //@Roles(UserType.Admin, UserType.Root)
+  @Roles(UserType.Admin, UserType.Root)
   @Get('/:userId')
   async getUserById(@Param('userId') userId: number): Promise<ReturnUserDto> {
+    return new ReturnUserDto(
+      await this.userService.getUserByIdUsingRelations(userId),
+    );
+  }
+
+  @Roles(UserType.Admin, UserType.Root, UserType.User)
+  @Patch()
+  @UsePipes(ValidationPipe)
+  async updatePasswordUser(
+    @Body() updatePasswordDTO: UpdatePasswordDTO,
+    @UserId() userId: number,
+  ): Promise<UserEntity> {
+    return this.userService.updatePasswordUser(updatePasswordDTO, userId);
+  }
+
+  @Roles(UserType.Admin, UserType.Root, UserType.User)
+  @Get()
+  async getInfoUser(@UserId() userId: number): Promise<ReturnUserDto> {
     return new ReturnUserDto(
       await this.userService.getUserByIdUsingRelations(userId),
     );
